@@ -10,18 +10,20 @@
           Radar
         </button>
         <button class="button is-success" (click)="setGraph('doughnut')">
-          Donut
+          Doughnut
         </button>
-        <button class="button is-success" (click)="setGraph('pie')">
-          Donut
-        </button>
+        <button class="button is-success" (click)="setGraph('pie')">Pie</button>
         <button class="button is-success" (click)="setGraph('polarArea')">
           Polar Area
+        </button>
+        <button (click)="downloadImage()" class="button is-link">
+          download
         </button>
       </div>
     </div>
     <div class="column">
-      <canvas id="myChart">{{ chart }}</canvas>
+      <canvas id="myChart" #chartimage>{{ chart }}</canvas>
     </div>
+    <a id="link"></a>
   </div>
 </div>
