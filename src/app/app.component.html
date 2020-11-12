@@ -1,29 +1,10 @@
 <div class="container">
   <div class="columns">
     <div class="column">
-      <div class="buttons">
-        <button class="button is-success" (click)="setGraph('line')">
-          Line
-        </button>
-        <button class="button is-success" (click)="setGraph('bar')">Bar</button>
-        <button class="button is-success" (click)="setGraph('radar')">
-          Radar
-        </button>
-        <button class="button is-success" (click)="setGraph('doughnut')">
-          Doughnut
-        </button>
-        <button class="button is-success" (click)="setGraph('pie')">Pie</button>
-        <button class="button is-success" (click)="setGraph('polarArea')">
-          Polar Area
-        </button>
-        <button (click)="downloadImage()" class="button is-link">
-          download
-        </button>
-      </div>
+      <app-dataform></app-dataform>
     </div>
     <div class="column">
-      <canvas id="myChart" #chartimage>{{ chart }}</canvas>
+      <app-graph></app-graph>
     </div>
-    <a id="link"></a>
   </div>
 </div>
