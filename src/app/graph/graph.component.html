@@ -1,5 +1,12 @@
 <div>
-  <canvas id="myChart" #graph>{{ chart }}</canvas>
+  <canvas id="myChart" (contextmenu)="onRightClick($event)" #graph>
+    {{ chart }}</canvas
+  >
 </div>
-<button (click)="downloadImage()" class="button is-link">download</button>
-<a id="link"></a>
+
+<div *ngIf="chart">
+  <button (click)="downloadImage()" class="button is-link">
+    Download Graph
+  </button>
+  <a id="link"></a>
+</div>

@@ -1,3 +1,4 @@
+import { Graph } from './../graph.model';
 import { GraphService } from './../graph.service';
 import {
   Component,
@@ -7,37 +8,40 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-
 import * as Chart from 'chart.js';
-import * as ChartDataLabels from 'chartjs-plugin-datalabels';
+import 'chartjs-plugin-datalabels';
+
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css'],
 })
 export class GraphComponent implements OnInit, OnDestroy {
-  chart: Chart;
+  chart: Chart = null;
   chartSub: Subscription;
   graphType: string;
   @ViewChild('graph') graph: ElementRef;
   constructor(private graphService: GraphService) {}
 
   ngOnInit(): void {
-    this.graphService.generateGraph.subscribe((type) => {
-      this.drawGraph(type);
+    this.graphService.generateGraph.subscribe((graph: Graph) => {
+      this.drawGraph(graph);
     });
   }
+  onRightClick(event: Event) {
+    event.preventDefault();
+  }
 
-  drawGraph(type: string) {
+  drawGraph(graphData: Graph) {
     if (this.chart) this.chart.destroy();
-    this.graphType = type;
+    this.graphType = graphData.type;
     this.chart = new Chart('myChart', {
-      type: type,
+      type: graphData.type,
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: [2001, 2002, 2003, 2004, 2005, 2006],
         datasets: [
           {
-            label: 'custom Chart',
+            label: graphData.label,
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -55,11 +59,10 @@ export class GraphComponent implements OnInit, OnDestroy {
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)',
             ],
-            borderWidth: 1,
+            borderWidth: 0.5,
           },
         ],
       },
-      plugins: [ChartDataLabels],
 
       options: {
         scales: {

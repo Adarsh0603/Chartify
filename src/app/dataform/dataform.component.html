@@ -1,4 +1,46 @@
-<div class="buttons">
+<div>
+  <form [formGroup]="dataForm">
+    <div class="field">
+      <label class="label">Label</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Enter Label"
+          formControlName="label"
+        />
+      </div>
+    </div>
+    <div formArrayName="dataFields">
+      <button class="button" (click)="addDataField()">Add Field</button>
+      <div *ngFor="let field of fields; let i = index" [formGroupName]="i">
+        <div class="field is-horizontal">
+          <div class="field-body">
+            <div class="field">
+              <input
+                class="input"
+                type="text"
+                placeholder="Label"
+                formControlName="label"
+              />
+            </div>
+            <div class="field">
+              <input
+                class="input"
+                type="email"
+                placeholder="Value"
+                formControlName="value"
+              />
+            </div>
+            <button class="button is-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="buttons is-vcentered">
   <button class="button is-success" (click)="setGraphType('line')">Line</button>
   <button class="button is-success" (click)="setGraphType('bar')">Bar</button>
   <button class="button is-success" (click)="setGraphType('radar')">
