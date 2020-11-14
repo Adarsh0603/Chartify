@@ -1,5 +1,10 @@
-<div>
-  <canvas id="myChart" (contextmenu)="onRightClick($event)" #graph>
+<div class="graph">
+  <canvas
+    id="myChart"
+    style="width: 100%"
+    (contextmenu)="onRightClick($event)"
+    #graph
+  >
     {{ chart }}</canvas
   >
 </div>

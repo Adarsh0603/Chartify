@@ -30,3 +30,10 @@
 .dataSide::-webkit-scrollbar-thumb:hover {
   background: #b8b8b8;
 }
+
+@media (max-width: 768px) {
+  .dataSide {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}

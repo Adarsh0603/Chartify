@@ -57,7 +57,11 @@ export class GraphComponent implements OnInit, OnDestroy {
       options: {
         legend: {
           display:
-            graphData.type == 'line' || graphData.type == 'bar' ? false : true,
+            graphData.type == 'line' ||
+            graphData.type == 'bar' ||
+            graphData.type == 'radar'
+              ? false
+              : true,
         },
         title: {
           text: graphData.title,
