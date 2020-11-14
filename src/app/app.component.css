@@ -1,10 +1,16 @@
 .container {
-  margin: 14px;
+  margin: 0px 14px;
   padding-right: 0px;
 }
-
+.appBody {
+  padding-top: 4rem;
+}
+.hero-body {
+  padding-bottom: 0px;
+  padding-top: 10px;
+}
 .dataSide {
-  height: 80vh;
+  height: 100vh;
   overflow-y: scroll;
 }
 ::-webkit-scrollbar {

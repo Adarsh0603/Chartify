@@ -12,6 +12,8 @@ export class DataformComponent implements OnInit, OnDestroy {
   dataForm: FormGroup;
   type: string;
   graphSub: Subscription;
+  notifyUser: boolean = false;
+  errorMessage: string;
 
   constructor(private graphService: GraphService) {}
 
@@ -25,9 +27,15 @@ export class DataformComponent implements OnInit, OnDestroy {
         this.setGraphType(selectedGraphType);
       }
     );
+    for (let i = 0; i < 4; i++) this.addDataField();
   }
 
   setGraphType(type: string) {
+    if (!this.dataForm.valid || this.fields.length == 0) {
+      this.showError();
+      return;
+    }
+    this.notifyUser = false;
     this.type = type;
     this.graphService.setGraph(
       type,
@@ -44,7 +52,7 @@ export class DataformComponent implements OnInit, OnDestroy {
   addDataField() {
     const newDataField = new FormGroup({
       label: new FormControl(null, Validators.required),
-      color: new FormControl('#48C774'),
+      color: new FormControl('#ff6384'),
       value: new FormControl(null, Validators.required),
     });
     (this.dataForm.get('dataFields') as FormArray).push(newDataField);
@@ -52,9 +60,17 @@ export class DataformComponent implements OnInit, OnDestroy {
 
   deleteField(index: number) {
     (this.dataForm.get('dataFields') as FormArray).removeAt(index);
-    if (this.fields.length > 1) this.setGraphType(this.type);
+    if (this.fields.length > 0 && this.dataForm.valid)
+      this.setGraphType(this.type);
   }
   ngOnDestroy() {
     this.graphSub.unsubscribe();
+  }
+  showError() {
+    this.errorMessage = 'Data fields cannot be empty!';
+    if (this.fields.length == 0) {
+      this.errorMessage = 'Please add some data.';
+    }
+    this.notifyUser = true;
   }
 }

@@ -1,3 +1,7 @@
+<div *ngIf="notifyUser" class="notification is-danger">
+  <button class="delete" (click)="notifyUser = false"></button>
+  {{ errorMessage }}
+</div>
 <div class="dataform">
   <form [formGroup]="dataForm">
     <div class="field">
@@ -38,12 +42,16 @@
               formControlName="value"
             />
           </div>
-          <button
-            class="button is-narrow control colorpickerbutton"
+          <div
+            class="is-narrow control colorpickerbutton"
             [style.background]="fields[i].value.color"
           >
             <div>
-              <span class="colorpickerbrush"
+              <span
+                class="colorpickerbrush"
+                [style.color]="
+                  fields[i].value.color == '#ffffff' ? '#000000' : '#ffffff'
+                "
                 ><i class="fa fa-paint-brush"></i
               ></span>
               <input
@@ -53,12 +61,16 @@
                 width="0px"
               />
             </div>
-          </button>
+          </div>
 
           <p class="control">
-            <a class="button is-primary" (click)="deleteField(i)">
+            <button
+              class="button is-primary"
+              [disabled]="fields.length == 1"
+              (click)="deleteField(i)"
+            >
               <i class="fa fa-trash" aria-hidden="true"></i>
-            </a>
+            </button>
           </p>
         </div>
       </div>

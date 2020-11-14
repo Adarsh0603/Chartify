@@ -1,16 +1,22 @@
 .colorpickerbutton {
   position: relative;
   padding: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .colorpicker {
   opacity: 0;
   position: absolute;
+  cursor: pointer;
   left: 0;
   top: 0;
-  width: 50%;
-  margin: 10px;
+  bottom: 0;
+  right: 0;
+  width: 90%;
 }
 .colorpickerbrush {
   margin: 10px;
+
+  color: white;
 }
