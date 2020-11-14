@@ -1,14 +1,25 @@
-<div class="hero is-fullheight">
+<nav
+  class="navbar has-shadow is-fixed-top"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <h1 class="is-size-5">Chartify</h1>
+    </a>
+  </div>
+</nav>
+<section class="hero is-fullheight-with-navbar">
   <div class="hero-body">
     <div class="container">
       <div class="columns">
-        <div class="column">
+        <div class="column dataSide">
           <app-dataform></app-dataform>
         </div>
-        <div class="column is-two-thirds has-text-centered">
+        <div class="column is-three-quarters has-text-centered">
           <app-graph></app-graph>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>

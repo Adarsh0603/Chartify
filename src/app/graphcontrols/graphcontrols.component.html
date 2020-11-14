@@ -1,0 +1,55 @@
+<!-- <div class="buttons is-vcentered">
+  <button class="button is-success" (click)="setGraphType('line')">Line</button>
+  <button class="button is-success" (click)="setGraphType('bar')">Bar</button>
+  <button class="button is-success" (click)="setGraphType('radar')">
+    Radar
+  </button>
+  <button class="button is-success" (click)="setGraphType('doughnut')">
+    Doughnut
+  </button>
+  <button class="button is-success" (click)="setGraphType('pie')">Pie</button>
+  <button class="button is-success" (click)="setGraphType('polarArea')">
+    Polar Area
+  </button>
+</div> -->
+
+<nav class="panel is-success chartpanel">
+  <p class="panel-heading">Charts</p>
+
+  <a class="panel-block" (click)="setGraphType('line')">
+    <span class="panel-icon">
+      <i class="fa fa-line-chart" aria-hidden="true"></i>
+    </span>
+    Line
+  </a>
+  <a class="panel-block" (click)="setGraphType('bar')">
+    <span class="panel-icon">
+      <i class="fa fa-bar-chart" aria-hidden="true"></i>
+    </span>
+    Bar
+  </a>
+  <a class="panel-block" (click)="setGraphType('radar')">
+    <span class="panel-icon">
+      <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+    </span>
+    Radar
+  </a>
+  <a class="panel-block" (click)="setGraphType('doughnut')">
+    <span class="panel-icon">
+      <i class="fa fa-circle-o" aria-hidden="true"></i>
+    </span>
+    Doughnut
+  </a>
+  <a class="panel-block" (click)="setGraphType('pie')">
+    <span class="panel-icon">
+      <i class="fa fa-pie-chart" aria-hidden="true"></i>
+    </span>
+    Pie
+  </a>
+  <a class="panel-block" (click)="setGraphType('polarArea')">
+    <span class="panel-icon">
+      <i class="fa fa-object-ungroup" aria-hidden="true"></i>
+    </span>
+    Polar Area
+  </a>
+</nav>

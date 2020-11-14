@@ -1,0 +1,26 @@
+.container {
+  margin: 24px;
+  padding-right: 0px;
+}
+.dataSide {
+  height: 100vh;
+  overflow-y: auto;
+}
+.dataSide::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+/* Track */
+.dataSide ::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.dataSide::-webkit-scrollbar-thumb {
+  background: #dddcdc;
+}
+
+/* Handle on hover */
+.dataSide::-webkit-scrollbar-thumb:hover {
+  background: #b8b8b8;
+}

@@ -9,6 +9,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class DataformComponent implements OnInit {
   dataForm: FormGroup;
+
   type: string;
 
   constructor(private graphService: GraphService) {}

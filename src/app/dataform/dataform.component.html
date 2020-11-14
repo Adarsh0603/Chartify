@@ -1,4 +1,4 @@
-<div>
+<div class="dataform">
   <form [formGroup]="dataForm">
     <div class="field">
       <label class="label">Label</label>
@@ -11,7 +11,15 @@
         />
       </div>
     </div>
-    <div formArrayName="dataFields">
+    <div class="columns">
+      <label for="fieldsList" class="column label"></label>
+      <div class="column is-narrow">
+        <button class="button is-primary" (click)="addDataField()">
+          Add Field
+        </button>
+      </div>
+    </div>
+    <div formArrayName="dataFields" id="fieldsList" class="fields">
       <div *ngFor="let field of fields; let i = index" [formGroupName]="i">
         <div class="field has-addons" style="margin-bottom: 4px">
           <div class="control">
@@ -37,22 +45,8 @@
           </p>
         </div>
       </div>
-      <button class="button" (click)="addDataField()">+</button>
     </div>
   </form>
 </div>
 
-<div class="buttons is-vcentered">
-  <button class="button is-success" (click)="setGraphType('line')">Line</button>
-  <button class="button is-success" (click)="setGraphType('bar')">Bar</button>
-  <button class="button is-success" (click)="setGraphType('radar')">
-    Radar
-  </button>
-  <button class="button is-success" (click)="setGraphType('doughnut')">
-    Doughnut
-  </button>
-  <button class="button is-success" (click)="setGraphType('pie')">Pie</button>
-  <button class="button is-success" (click)="setGraphType('polarArea')">
-    Polar Area
-  </button>
-</div>
+<app-graphcontrols (drawGraph)="setGraphType($event)"></app-graphcontrols>
