@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { pipe, Subscription } from 'rxjs';
 import * as Chart from 'chart.js';
 import 'chartjs-plugin-datalabels';
 
@@ -20,10 +20,18 @@ export class GraphComponent implements OnInit, OnDestroy {
   chart: Chart = null;
   chartSub: Subscription;
   graphType: string;
+  types: string[] = ['line', 'bar', 'radar', 'doughnut', 'pie', 'polarArea'];
   @ViewChild('graph') graph: ElementRef;
   constructor(private graphService: GraphService) {}
 
   ngOnInit(): void {
+    let dummyType = this.types[Math.floor(Math.random() * Math.floor(6))];
+    this.drawGraph({
+      label: 'Dummy Chart',
+      type: dummyType,
+      labels: ['label1', 'label2', 'label3'],
+      data: [44, 54, 34],
+    });
     this.graphService.generateGraph.subscribe((graph: Graph) => {
       this.drawGraph(graph);
     });

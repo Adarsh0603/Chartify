@@ -12,11 +12,10 @@
       </div>
     </div>
     <div formArrayName="dataFields">
-      <button class="button" (click)="addDataField()">Add Field</button>
       <div *ngFor="let field of fields; let i = index" [formGroupName]="i">
         <div class="field is-horizontal">
           <div class="field-body">
-            <div class="field">
+            <div class="field dataFieldLabel" style="margin-right: 0px">
               <input
                 class="input"
                 type="text"
@@ -24,18 +23,25 @@
                 formControlName="label"
               />
             </div>
-            <div class="field">
+            <div class="field dataFieldValue">
               <input
                 class="input"
-                type="email"
+                type="number"
                 placeholder="Value"
                 formControlName="value"
               />
             </div>
-            <button class="button is-danger">Delete</button>
+            <button
+              class="button is-danger dataFieldDelete"
+              style="margin-top: 0px"
+              (click)="deleteField(i)"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
+      <button class="button" (click)="addDataField()">Add Field</button>
     </div>
   </form>
 </div>
