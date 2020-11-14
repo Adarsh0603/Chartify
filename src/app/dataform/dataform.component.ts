@@ -15,7 +15,7 @@ export class DataformComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataForm = new FormGroup({
-      label: new FormControl(),
+      title: new FormControl(),
       dataFields: new FormArray([]),
     });
   }
@@ -24,7 +24,7 @@ export class DataformComponent implements OnInit {
     this.type = type;
     this.graphService.setGraph(
       type,
-      this.dataForm.get('label').value,
+      this.dataForm.get('title').value,
       this.fields
     );
     console.log(this.dataForm);

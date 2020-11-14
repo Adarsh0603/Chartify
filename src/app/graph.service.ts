@@ -2,7 +2,6 @@ import { AbstractControl } from '@angular/forms';
 import { Graph } from './graph.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { controllers } from 'chart.js';
 
 @Injectable({
   providedIn: 'root',
@@ -10,25 +9,26 @@ import { controllers } from 'chart.js';
 export class GraphService {
   constructor() {}
   generateGraph = new Subject<Graph>();
-  label = new Subject<string>();
-  type = new Subject<string>();
   types: string[] = ['line', 'bar', 'radar', 'doughnut', 'pie', 'polarArea'];
 
-  setGraph(graphType: string, label: string, dataFields: AbstractControl[]) {
+  setGraph(graphType: string, title: string, dataFields: AbstractControl[]) {
     let data: number[] = [];
     let labels: string[] = [];
     let colors: string[] = [];
+    let borders: string[] = [];
     dataFields.forEach((field) => {
       labels.push(field.value.label);
       data.push(field.value.value);
       colors.push(this.hexToRgba(field.value.color, 50));
+      borders.push(this.hexToRgba(field.value.color, 100));
     });
     const graph: Graph = {
-      label: label,
+      title: title,
       type: graphType,
       labels: labels,
       data: data,
       colors: colors,
+      borders: borders,
     };
     this.generateGraph.next(graph);
   }
@@ -37,11 +37,20 @@ export class GraphService {
     let dummyType = this.types[Math.floor(Math.random() * Math.floor(6))];
 
     return {
-      label: 'Dummy Chart',
+      title: 'Dummy Chart',
       type: dummyType,
-      labels: ['label1', 'label2', 'label3'],
+      labels: ['Label 1', 'Label 2', 'Label 3'],
       data: [44, 54, 34],
-      colors: ['#f1f1f1', '#f3f3f3', '#f6f6f6'],
+      colors: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+      ],
+      borders: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235,1)',
+        'rgba(255, 206, 86, 1)',
+      ],
     };
   }
 

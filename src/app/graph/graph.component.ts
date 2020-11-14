@@ -46,23 +46,17 @@ export class GraphComponent implements OnInit, OnDestroy {
         labels: graphData.labels,
         datasets: [
           {
-            label: graphData.label,
+            // label: graphData.title,
             data: graphData.data,
             backgroundColor: graphData.colors,
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
+            borderColor: graphData.borders,
             borderWidth: 0.5,
           },
         ],
       },
 
       options: {
+        title: { text: graphData.title },
         scales: {
           yAxes: [
             {
@@ -75,11 +69,12 @@ export class GraphComponent implements OnInit, OnDestroy {
       },
     });
   }
-
   downloadImage() {
     var image = this.graph.nativeElement
       .toDataURL('image/png')
       .replace('image/png', 'image/octet-stream'); // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+    console.log(this.chart.toBase64Image());
 
     var link = document.getElementById('link');
     link.setAttribute('download', `(${this.graphType}).png`);

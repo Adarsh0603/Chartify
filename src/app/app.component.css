@@ -2,14 +2,14 @@
   margin: 24px;
   padding-right: 0px;
 }
+
 .dataSide {
-  height: 100vh;
+  height: 80vh;
   overflow-y: auto;
 }
-.dataSide::-webkit-scrollbar {
-  width: 8px !important;
+::-webkit-scrollbar {
+  width: 10px !important;
 }
-
 /* Track */
 .dataSide ::-webkit-scrollbar-track {
   background: white;
