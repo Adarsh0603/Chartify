@@ -38,6 +38,23 @@
               formControlName="value"
             />
           </div>
+          <button
+            class="button is-narrow control colorpickerbutton"
+            [style.background]="fields[i].value.color"
+          >
+            <div>
+              <span class="colorpickerbrush"
+                ><i class="fa fa-paint-brush"></i
+              ></span>
+              <input
+                type="color"
+                class="colorpicker"
+                formControlName="color"
+                width="0px"
+              />
+            </div>
+          </button>
+
           <p class="control">
             <a class="button is-primary" (click)="deleteField(i)">
               <i class="fa fa-trash" aria-hidden="true"></i>

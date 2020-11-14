@@ -9,7 +9,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GraphcontrolsComponent } from './graphcontrols/graphcontrols.component';
 
 @NgModule({
-  declarations: [AppComponent, GraphComponent, DataformComponent, GraphcontrolsComponent],
+  declarations: [
+    AppComponent,
+    GraphComponent,
+    DataformComponent,
+    GraphcontrolsComponent,
+  ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

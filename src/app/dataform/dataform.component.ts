@@ -9,7 +9,6 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class DataformComponent implements OnInit {
   dataForm: FormGroup;
-
   type: string;
 
   constructor(private graphService: GraphService) {}
@@ -28,18 +27,22 @@ export class DataformComponent implements OnInit {
       this.dataForm.get('label').value,
       this.fields
     );
+    console.log(this.dataForm);
   }
 
   get fields() {
     return (this.dataForm.get('dataFields') as FormArray).controls;
   }
+
   addDataField() {
     const newDataField = new FormGroup({
       label: new FormControl(null),
+      color: new FormControl('#f1f1f1'),
       value: new FormControl(null),
     });
     (this.dataForm.get('dataFields') as FormArray).push(newDataField);
   }
+
   deleteField(index: number) {
     (this.dataForm.get('dataFields') as FormArray).removeAt(index);
     if (this.fields.length > 1) this.setGraphType(this.type);

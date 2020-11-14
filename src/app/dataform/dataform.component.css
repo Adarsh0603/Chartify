@@ -1,8 +1,16 @@
-.fields {
+.colorpickerbutton {
+  position: relative;
+  padding: 0px;
 }
 
-/* .dataform {
-  height: 50vh;
-} */
-.chartpanel {
+.colorpicker {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  margin: 10px;
+}
+.colorpickerbrush {
+  margin: 10px;
 }
