@@ -38,12 +38,12 @@ export class GraphComponent implements OnInit, OnDestroy {
     this.chart = new Chart('myChart', {
       type: graphData.type,
       data: {
-        labels: [2001, 2002, 2003, 2004, 2005, 2006],
+        labels: graphData.labels,
         datasets: [
           {
             label: graphData.label,
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
+            data: graphData.data,
+            /* backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
               'rgba(255, 206, 86, 0.2)',
@@ -59,7 +59,7 @@ export class GraphComponent implements OnInit, OnDestroy {
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)',
             ],
-            borderWidth: 0.5,
+            borderWidth: 0.5, */
           },
         ],
       },

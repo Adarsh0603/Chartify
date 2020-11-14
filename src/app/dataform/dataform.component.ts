@@ -20,7 +20,11 @@ export class DataformComponent implements OnInit {
   }
 
   setGraphType(type: string) {
-    this.graphService.setGraph(type, this.dataForm.get('label').value);
+    this.graphService.setGraph(
+      type,
+      this.dataForm.get('label').value,
+      (this.dataForm.get('dataFields') as FormArray).controls
+    );
   }
 
   get fields() {
