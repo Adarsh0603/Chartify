@@ -38,6 +38,7 @@ export class GraphComponent implements OnInit, OnDestroy {
 
   drawGraph(graphData: Graph) {
     if (this.chart) this.chart.destroy();
+    console.log(graphData.colors[0]);
     this.graphType = graphData.type;
     this.chart = new Chart('myChart', {
       type: graphData.type,
@@ -47,14 +48,7 @@ export class GraphComponent implements OnInit, OnDestroy {
           {
             label: graphData.label,
             data: graphData.data,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
+            backgroundColor: graphData.colors,
             borderColor: [
               'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
