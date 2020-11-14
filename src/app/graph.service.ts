@@ -11,6 +11,7 @@ export class GraphService {
   generateGraph = new Subject<Graph>();
   label = new Subject<string>();
   type = new Subject<string>();
+  types: string[] = ['line', 'bar', 'radar', 'doughnut', 'pie', 'polarArea'];
 
   setGraph(graphType: string, label: string, dataFields: AbstractControl[]) {
     let data: number[] = [];
@@ -26,5 +27,16 @@ export class GraphService {
       data: data,
     };
     this.generateGraph.next(graph);
+  }
+
+  generateDummy(): Graph {
+    let dummyType = this.types[Math.floor(Math.random() * Math.floor(6))];
+
+    return {
+      label: 'Dummy Chart',
+      type: dummyType,
+      labels: ['label1', 'label2', 'label3'],
+      data: [44, 54, 34],
+    };
   }
 }

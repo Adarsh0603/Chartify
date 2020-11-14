@@ -20,21 +20,17 @@ export class GraphComponent implements OnInit, OnDestroy {
   chart: Chart = null;
   chartSub: Subscription;
   graphType: string;
-  types: string[] = ['line', 'bar', 'radar', 'doughnut', 'pie', 'polarArea'];
   @ViewChild('graph') graph: ElementRef;
   constructor(private graphService: GraphService) {}
 
   ngOnInit(): void {
-    let dummyType = this.types[Math.floor(Math.random() * Math.floor(6))];
-    this.drawGraph({
-      label: 'Dummy Chart',
-      type: dummyType,
-      labels: ['label1', 'label2', 'label3'],
-      data: [44, 54, 34],
-    });
-    this.graphService.generateGraph.subscribe((graph: Graph) => {
-      this.drawGraph(graph);
-    });
+    this.drawGraph(this.graphService.generateDummy());
+
+    this.chartSub = this.graphService.generateGraph.subscribe(
+      (graph: Graph) => {
+        this.drawGraph(graph);
+      }
+    );
   }
   onRightClick(event: Event) {
     event.preventDefault();
@@ -51,7 +47,7 @@ export class GraphComponent implements OnInit, OnDestroy {
           {
             label: graphData.label,
             data: graphData.data,
-            /* backgroundColor: [
+            backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
               'rgba(255, 206, 86, 0.2)',
@@ -67,7 +63,7 @@ export class GraphComponent implements OnInit, OnDestroy {
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)',
             ],
-            borderWidth: 0.5, */
+            borderWidth: 0.5,
           },
         ],
       },

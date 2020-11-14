@@ -25,7 +25,7 @@ export class DataformComponent implements OnInit {
     this.graphService.setGraph(
       type,
       this.dataForm.get('label').value,
-      (this.dataForm.get('dataFields') as FormArray).controls
+      this.fields
     );
   }
 
@@ -41,6 +41,6 @@ export class DataformComponent implements OnInit {
   }
   deleteField(index: number) {
     (this.dataForm.get('dataFields') as FormArray).removeAt(index);
-    this.setGraphType(this.type);
+    if (this.fields.length > 1) this.setGraphType(this.type);
   }
 }

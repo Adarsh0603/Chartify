@@ -13,35 +13,31 @@
     </div>
     <div formArrayName="dataFields">
       <div *ngFor="let field of fields; let i = index" [formGroupName]="i">
-        <div class="field is-horizontal">
-          <div class="field-body">
-            <div class="field dataFieldLabel" style="margin-right: 0px">
-              <input
-                class="input"
-                type="text"
-                placeholder="Label"
-                formControlName="label"
-              />
-            </div>
-            <div class="field dataFieldValue">
-              <input
-                class="input"
-                type="number"
-                placeholder="Value"
-                formControlName="value"
-              />
-            </div>
-            <button
-              class="button is-danger dataFieldDelete"
-              style="margin-top: 0px"
-              (click)="deleteField(i)"
-            >
-              Delete
-            </button>
+        <div class="field has-addons" style="margin-bottom: 4px">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Label"
+              formControlName="label"
+            />
           </div>
+          <div class="control">
+            <input
+              class="input"
+              type="number"
+              placeholder="Value"
+              formControlName="value"
+            />
+          </div>
+          <p class="control">
+            <a class="button is-primary" (click)="deleteField(i)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+          </p>
         </div>
       </div>
-      <button class="button" (click)="addDataField()">Add Field</button>
+      <button class="button" (click)="addDataField()">+</button>
     </div>
   </form>
 </div>
