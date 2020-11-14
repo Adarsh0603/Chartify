@@ -7,6 +7,7 @@ import { GraphComponent } from './graph/graph.component';
 import { DataformComponent } from './dataform/dataform.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GraphcontrolsComponent } from './graphcontrols/graphcontrols.component';
+import { GraphcontroltabsComponent } from './graphcontroltabs/graphcontroltabs.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { GraphcontrolsComponent } from './graphcontrols/graphcontrols.component'
     GraphComponent,
     DataformComponent,
     GraphcontrolsComponent,
+    GraphcontroltabsComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],

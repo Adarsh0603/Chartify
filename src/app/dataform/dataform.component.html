@@ -65,5 +65,6 @@
     </div>
   </form>
 </div>
-
-<app-graphcontrols (drawGraph)="setGraphType($event)"></app-graphcontrols>
+<div *ngIf="dataForm.valid" class="is-hidden">
+  <app-graphcontrols></app-graphcontrols>
+</div>

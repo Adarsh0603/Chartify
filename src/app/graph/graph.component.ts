@@ -38,7 +38,6 @@ export class GraphComponent implements OnInit, OnDestroy {
 
   drawGraph(graphData: Graph) {
     if (this.chart) this.chart.destroy();
-    console.log(graphData.colors[0]);
     this.graphType = graphData.type;
     this.chart = new Chart('myChart', {
       type: graphData.type,
@@ -46,7 +45,7 @@ export class GraphComponent implements OnInit, OnDestroy {
         labels: graphData.labels,
         datasets: [
           {
-            // label: graphData.title,
+            label: '',
             data: graphData.data,
             backgroundColor: graphData.colors,
             borderColor: graphData.borders,
@@ -56,7 +55,14 @@ export class GraphComponent implements OnInit, OnDestroy {
       },
 
       options: {
-        title: { text: graphData.title },
+        legend: {
+          display:
+            graphData.type == 'line' || graphData.type == 'bar' ? false : true,
+        },
+        title: {
+          text: graphData.title,
+          display: graphData.title ? true : false,
+        },
         scales: {
           yAxes: [
             {

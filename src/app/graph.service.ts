@@ -10,7 +10,7 @@ export class GraphService {
   constructor() {}
   generateGraph = new Subject<Graph>();
   types: string[] = ['line', 'bar', 'radar', 'doughnut', 'pie', 'polarArea'];
-
+  drawGraphEvent = new Subject<string>();
   setGraph(graphType: string, title: string, dataFields: AbstractControl[]) {
     let data: number[] = [];
     let labels: string[] = [];
@@ -19,7 +19,7 @@ export class GraphService {
     dataFields.forEach((field) => {
       labels.push(field.value.label);
       data.push(field.value.value);
-      colors.push(this.hexToRgba(field.value.color, 50));
+      colors.push(this.hexToRgba(field.value.color, 20));
       borders.push(this.hexToRgba(field.value.color, 100));
     });
     const graph: Graph = {
@@ -56,9 +56,9 @@ export class GraphService {
 
   hexToRgba(hex: string, opacity: number) {
     hex = hex.replace('#', '');
-    let r = parseInt(hex.substr(0, 2), 16);
-    let g = parseInt(hex.substr(2, 4), 16);
-    let b = parseInt(hex.substr(4, 6), 16);
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
     let rgba: string = `rgba(${r},${g},${b},${opacity / 100})`;
     return rgba;
   }
