@@ -27,10 +27,8 @@
               "node_modules/bulma/css/bulma.min.css",
               "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css"
-
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -121,6 +119,10 @@
               "devServerTarget": "Chartify:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

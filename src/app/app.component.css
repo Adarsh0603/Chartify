@@ -2,8 +2,15 @@
   margin: 0px 14px;
   padding-right: 0px;
 }
-.appBody {
-  padding-top: 4rem;
+.section {
+  padding: 0.2rem;
+}
+
+.appBodyGraph {
+  padding-top: 5rem;
+}
+.appBodyData {
+  padding-top: 5rem;
 }
 .hero-body {
   padding-bottom: 0px;
@@ -34,6 +41,17 @@
 @media (max-width: 768px) {
   .dataSide {
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: unset;
+  }
+  .container {
+    margin: 0px 8px;
+  }
+
+  .reverse-columns {
+    flex-direction: column-reverse;
+    display: flex;
+  }
+  .appBodyData {
+    padding-top: 0rem;
   }
 }

@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { pipe, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import * as Chart from 'chart.js';
 import 'chartjs-plugin-datalabels';
 

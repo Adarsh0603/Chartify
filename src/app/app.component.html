@@ -1,30 +1,43 @@
-<section class="hero is-fullheight-with-navbar">
-  <div>
-    <nav
-      class="navbar has-shadow is-fixed-top has-background-white"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <h1 class="is-size-5">Chartify</h1>
-        </a>
-      </div>
-    </nav>
+<nav
+  class="navbar is-white has-shadow is-fixed-top"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <a class="navbar-item is-expanded">
+      <img src="../assets/charticon.png" alt="" />
+      <h1 class="is-size-5 has-text-weight-bold px-3">Chartify</h1>
+    </a>
+    <p class="navbar-item hide-on-desktop">
+      <button class="button is-success is-small" (click)="downloadGraph()">
+        <i class="fa fa-download"></i>
+      </button>
+    </p>
   </div>
-  <div class="hero-body">
+  <div class="navbar-menu">
+    <div class="navbar-end">
+      <p class="navbar-item">
+        <button class="button is-success" (click)="downloadGraph()">
+          <span class="icon pr-5 pl-3 pt-1">
+            <i class="fa fa-download"></i
+          ></span>
+          Download Graph
+        </button>
+      </p>
+    </div>
+  </div>
+</nav>
+<section class="hero is-fullheight-with-navbar">
+  <div class="section">
     <div class="container">
-      <div class="columns">
-        <div class="column dataSide appBody">
+      <div class="columns reverse-columns">
+        <div class="column dataSide appBodyData">
           <app-dataform></app-dataform>
         </div>
-        <div class="column is-three-quarters has-text-centered appBody">
-          <app-graph></app-graph>
+        <div class="column is-three-quarters has-text-centered appBodyGraph">
+          <app-graph #graph></app-graph>
           <app-graphcontroltabs></app-graphcontroltabs>
         </div>
-        <!-- <div class="column dataSide appBody">
-          <app-dataform></app-dataform>
-        </div> -->
       </div>
     </div>
   </div>

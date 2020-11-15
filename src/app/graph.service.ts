@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 export class GraphService {
   constructor() {}
   generateGraph = new Subject<Graph>();
-  types: string[] = ['line', 'bar', 'radar', 'doughnut', 'pie', 'polarArea'];
+  types: string[] = ['line', 'bar', 'doughnut', 'pie', 'polarArea'];
   drawGraphEvent = new Subject<string>();
   setGraph(graphType: string, title: string, dataFields: AbstractControl[]) {
     let data: number[] = [];
@@ -34,7 +34,9 @@ export class GraphService {
   }
 
   generateDummy(): Graph {
-    let dummyType = this.types[Math.floor(Math.random() * Math.floor(6))];
+    let dummyType = this.types[
+      Math.floor(Math.random() * Math.floor(this.types.length))
+    ];
 
     return {
       title: 'Dummy Chart',
