@@ -19,7 +19,9 @@ import 'chartjs-plugin-datalabels';
 export class GraphComponent implements OnInit, OnDestroy {
   chart: Chart = null;
   chartSub: Subscription;
-  graphType: string;
+  currentGraph: Graph;
+  zoom: boolean = false;
+
   @ViewChild('graph') graph: ElementRef;
   constructor(private graphService: GraphService) {}
 
@@ -38,7 +40,7 @@ export class GraphComponent implements OnInit, OnDestroy {
 
   drawGraph(graphData: Graph) {
     if (this.chart) this.chart.destroy();
-    this.graphType = graphData.type;
+    this.currentGraph = graphData;
     this.chart = new Chart('myChart', {
       type: graphData.type,
       data: {
@@ -87,11 +89,18 @@ export class GraphComponent implements OnInit, OnDestroy {
     console.log(this.chart.toBase64Image());
 
     var link = document.getElementById('link');
-    link.setAttribute('download', `(${this.graphType}).png`);
+    link.setAttribute(
+      'download',
+      `${this.currentGraph.title}(${this.currentGraph.type}).png`
+    );
     link.setAttribute('href', image);
     link.click();
   }
 
+  onZoom() {
+    console.log('Zoomed');
+    this.zoom = !this.zoom;
+  }
   ngOnDestroy() {
     this.chartSub.unsubscribe();
   }

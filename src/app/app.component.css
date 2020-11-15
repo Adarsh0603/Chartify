@@ -4,10 +4,13 @@
 
 .appBodyGraph {
   padding-top: 5rem;
+  position: relative;
 }
+
 .appBodyData {
   padding-top: 5rem;
   height: 100vh;
+  background-color: #f1f1f181;
   overflow-y: scroll;
 }
 .tabs {
@@ -41,6 +44,11 @@
   .appBodyData {
     padding-top: 0rem;
     height: 100%;
+    background-color: #fff;
+
     overflow-y: unset;
+  }
+  .tabs {
+    display: block;
   }
 }
