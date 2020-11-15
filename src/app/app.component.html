@@ -5,8 +5,8 @@
 >
   <div class="navbar-brand">
     <a class="navbar-item is-expanded">
-      <img src="../assets/charticon.png" alt="" />
-      <h1 class="is-size-5 has-text-weight-bold px-3">Chartify</h1>
+      <img src="assets/charticon.png" alt="" />
+      <h1 class="is-size-5 has-text-weight-bold px-2">Chartify</h1>
     </a>
     <p class="navbar-item hide-on-desktop">
       <button class="button is-success is-small" (click)="downloadGraph()">
@@ -29,13 +29,13 @@
 </nav>
 <section class="hero is-fullheight-with-navbar">
   <div class="section">
-    <div class="container">
-      <div class="columns reverse-columns">
-        <div class="column dataSide appBodyData">
-          <app-dataform></app-dataform>
-        </div>
-        <div class="column is-three-quarters has-text-centered appBodyGraph">
-          <app-graph #graph></app-graph>
+    <div class="columns reverse-columns">
+      <div class="column dataSide appBodyData">
+        <app-dataform></app-dataform>
+      </div>
+      <div class="column has-text-centered is-two-thrid appBodyGraph">
+        <app-graph #graph></app-graph>
+        <div class="tabs">
           <app-graphcontroltabs></app-graphcontroltabs>
         </div>
       </div>

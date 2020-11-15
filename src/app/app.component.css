@@ -1,9 +1,5 @@
-.container {
-  margin: 0px 14px;
-  padding-right: 0px;
-}
 .section {
-  padding: 0.2rem;
+  padding: 0.7rem 1rem;
 }
 
 .appBodyGraph {
@@ -11,15 +7,14 @@
 }
 .appBodyData {
   padding-top: 5rem;
-}
-.hero-body {
-  padding-bottom: 0px;
-  padding-top: 10px;
-}
-.dataSide {
   height: 100vh;
   overflow-y: scroll;
 }
+.tabs {
+  display: flex;
+  justify-content: center;
+}
+
 ::-webkit-scrollbar {
   width: 10px !important;
 }
@@ -39,19 +34,13 @@
 }
 
 @media (max-width: 768px) {
-  .dataSide {
-    height: 100%;
-    overflow-y: unset;
-  }
-  .container {
-    margin: 0px 8px;
-  }
-
   .reverse-columns {
     flex-direction: column-reverse;
     display: flex;
   }
   .appBodyData {
     padding-top: 0rem;
+    height: 100%;
+    overflow-y: unset;
   }
 }
