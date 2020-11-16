@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { GraphService } from './../graph.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graphcontroltabs.component.css'],
 })
 export class GraphcontroltabsComponent implements OnInit {
-  constructor(private graphService: GraphService) {}
+  constructor(private graphService: GraphService, private router: Router) {}
 
   //Triggers the setGraphType function in dataform to check form validation
   setGraphType(type: string) {
-    this.graphService.drawGraphEvent.next(type);
+    if (this.router.url == '/config') {
+      this.router.navigate(['/']);
+    } else this.graphService.drawGraphEvent.next(type);
   }
   ngOnInit(): void {}
 }

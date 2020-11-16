@@ -22,6 +22,7 @@
 .config {
   position: absolute;
   right: 0;
+  top: 4.5rem;
 }
 
 .logo {
@@ -46,10 +47,11 @@
     display: flex;
   }
   .appBodyData {
-    padding-top: 4rem;
+    padding-top: 3rem;
     height: 100%;
     background-color: #fff;
     overflow-y: unset;
+    position: relative;
   }
   .error {
     z-index: 5;
@@ -60,7 +62,13 @@
     margin: 10px;
   }
   .appBodyGraph {
-    padding-top: 0.2rem;
+    padding-top: 3rem;
+  }
+  .config {
+    position: absolute;
+    right: 0;
+    margin-right: 6px;
+    top: 4rem;
   }
   .tabs {
     display: block;
@@ -72,16 +80,16 @@
   width: 10px !important;
 }
 /* Track */
-.dataSide ::-webkit-scrollbar-track {
+.appBodyData ::-webkit-scrollbar-track {
   background: white;
 }
 
 /* Handle */
-.dataSide::-webkit-scrollbar-thumb {
+.appBodyData::-webkit-scrollbar-thumb {
   background: #dddcdc;
 }
 
 /* Handle on hover */
-.dataSide::-webkit-scrollbar-thumb:hover {
+.appBodyData::-webkit-scrollbar-thumb:hover {
   background: #b8b8b8;
 }
