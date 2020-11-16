@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { GraphService } from './../graph.service';
 import { Subscription } from 'rxjs';
 import { GraphConfig } from './../graphConfig.model';
 import { ConfigService } from './../config.service';
@@ -19,7 +21,11 @@ export class ConfigComponent implements OnInit, OnDestroy {
   configForm: FormGroup;
   config: GraphConfig;
   configSub: Subscription;
-  constructor(private configService: ConfigService) {}
+  constructor(
+    private configService: ConfigService,
+    private graphService: GraphService,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.configSub = this.configService.graphConfig.subscribe(
       (config) => (this.config = config)
@@ -32,6 +38,7 @@ export class ConfigComponent implements OnInit, OnDestroy {
 
   onConfigSave() {
     this.configService.saveConfig(this.configForm.value);
+    this.router.navigate(['/']);
   }
   ngOnDestroy() {
     this.configSub.unsubscribe();

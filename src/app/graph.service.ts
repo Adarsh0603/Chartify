@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 export class GraphService {
   constructor(private configService: ConfigService) {}
   generateGraph = new Subject<Graph>();
+  graphType;
   drawGraphEvent = new Subject<string>();
   types: string[] = ['line', 'bar', 'doughnut', 'pie', 'polarArea'];
 
@@ -38,20 +39,60 @@ export class GraphService {
     this.generateGraph.next(graph);
   }
 
+  createGraphMap(graph: Graph) {
+    return {
+      type: graph.type,
+      data: {
+        labels: graph.labels,
+        datasets: [
+          {
+            label: '',
+            data: graph.data,
+            backgroundColor: graph.colors,
+            borderColor: graph.borders,
+            borderWidth: graph.config.borderWidth / 100,
+          },
+        ],
+      },
+
+      options: {
+        legend: {
+          display:
+            graph.type == 'line' || graph.type == 'bar' || graph.type == 'radar'
+              ? false
+              : true,
+        },
+        title: {
+          text: graph.title,
+          display: graph.title ? true : false,
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    };
+  }
+
   generateDummy(): Graph {
     let dummyType = this.types[
       Math.floor(Math.random() * Math.floor(this.types.length))
     ];
-
+    let opacity = this.configService.config.opacity / 100;
     return {
       title: 'Dummy Chart',
       type: dummyType,
       labels: ['Label 1', 'Label 2', 'Label 3'],
       data: [44, 54, 34],
       colors: [
-        `rgba(255, 99, 132, ${this.configService.config.opacity})`,
-        `rgba(54, 162, 235, ${this.configService.config.opacity})`,
-        `rgba(255, 206, 86, ${this.configService.config.opacity})`,
+        `rgba(255, 99, 132, ${opacity})`,
+        `rgba(54, 162, 235, ${opacity})`,
+        `rgba(255, 206, 86, ${opacity})`,
       ],
       borders: [
         'rgba(255, 99, 132, 1)',

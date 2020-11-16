@@ -1,14 +1,13 @@
 import { BehaviorSubject, Subject } from 'rxjs';
 import { GraphConfig } from './graphConfig.model';
 import { Injectable } from '@angular/core';
-import { config } from 'process';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
   graphConfig = new BehaviorSubject<GraphConfig>({
-    opacity: 50,
+    opacity: 20,
     borderWidth: 75,
   });
 

@@ -27,7 +27,6 @@ export class GraphComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.drawGraph(this.graphService.generateDummy());
-
     this.chartSub = this.graphService.generateGraph.subscribe(
       (graph: Graph) => {
         this.drawGraph(graph);
@@ -41,45 +40,10 @@ export class GraphComponent implements OnInit, OnDestroy {
   drawGraph(graphData: Graph) {
     if (this.chart) this.chart.destroy();
     this.currentGraph = graphData;
-    this.chart = new Chart('myChart', {
-      type: graphData.type,
-      data: {
-        labels: graphData.labels,
-        datasets: [
-          {
-            label: '',
-            data: graphData.data,
-            backgroundColor: graphData.colors,
-            borderColor: graphData.borders,
-            borderWidth: graphData.config.borderWidth / 100,
-          },
-        ],
-      },
-
-      options: {
-        legend: {
-          display:
-            graphData.type == 'line' ||
-            graphData.type == 'bar' ||
-            graphData.type == 'radar'
-              ? false
-              : true,
-        },
-        title: {
-          text: graphData.title,
-          display: graphData.title ? true : false,
-        },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
-        },
-      },
-    });
+    this.chart = new Chart(
+      'myChart',
+      this.graphService.createGraphMap(graphData)
+    );
   }
   downloadImage() {
     var image = this.graph.nativeElement
@@ -92,7 +56,9 @@ export class GraphComponent implements OnInit, OnDestroy {
     link.setAttribute(
       'download',
       `${
-        this.currentGraph.title == null ? 'untitled' : this.currentGraph.title
+        this.currentGraph.title.trim() == ''
+          ? 'untitled'
+          : this.currentGraph.title
       }(${this.currentGraph.type}).png`
     );
     link.setAttribute('href', image);

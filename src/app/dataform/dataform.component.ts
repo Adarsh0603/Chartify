@@ -1,8 +1,8 @@
+import { FormdataService } from './../formdata.service';
 import { Subscription } from 'rxjs';
 import { GraphService } from './../graph.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dataform',
@@ -16,19 +16,26 @@ export class DataformComponent implements OnInit, OnDestroy {
   notifyUser: boolean = false;
   errorMessage: string;
 
-  constructor(private graphService: GraphService, private router: Router) {}
+  constructor(
+    private graphService: GraphService,
+    private formDataService: FormdataService
+  ) {}
 
   ngOnInit(): void {
+    let currentFormData = this.formDataService.formData;
     this.dataForm = new FormGroup({
-      title: new FormControl(),
-      dataFields: new FormArray([]),
+      title: new FormControl(currentFormData ? currentFormData.title : ''),
+      dataFields: new FormArray(
+        currentFormData ? currentFormData.dataFields : []
+      ),
     });
     this.graphSub = this.graphService.drawGraphEvent.subscribe(
       (selectedGraphType: string) => {
         this.setGraphType(selectedGraphType);
       }
     );
-    for (let i = 0; i < 4; i++) this.addDataField();
+    if (currentFormData == null)
+      for (let i = 0; i < 4; i++) this.addDataField();
   }
 
   setGraphType(type: string) {
@@ -38,12 +45,15 @@ export class DataformComponent implements OnInit, OnDestroy {
     }
     this.notifyUser = false;
     this.type = type;
+    this.formDataService.setFormData({
+      title: this.dataForm.get('title').value,
+      dataFields: this.fields,
+    });
     this.graphService.setGraph(
       type,
       this.dataForm.get('title').value,
       this.fields
     );
-    console.log(this.dataForm);
   }
 
   get fields() {
@@ -61,7 +71,7 @@ export class DataformComponent implements OnInit, OnDestroy {
 
   deleteField(index: number) {
     (this.dataForm.get('dataFields') as FormArray).removeAt(index);
-    if (this.fields.length > 0 && this.dataForm.valid)
+    if (this.fields.length > 0 && this.dataForm.valid && this.type)
       this.setGraphType(this.type);
   }
   ngOnDestroy() {
