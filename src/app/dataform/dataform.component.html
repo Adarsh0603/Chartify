@@ -1,4 +1,8 @@
-<div *ngIf="notifyUser" class="notification is-danger">
+<div
+  *ngIf="notifyUser"
+  class="notification is-danger"
+  style="margin-top: 20px; padding: 15px"
+>
   <button class="delete" (click)="notifyUser = false"></button>
   {{ errorMessage }}
 </div>

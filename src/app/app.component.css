@@ -12,12 +12,24 @@
   height: 100vh;
   background-color: #f1f1f181;
   overflow-y: scroll;
+  position: relative;
 }
 .tabs {
   display: flex;
   justify-content: center;
 }
 
+.config {
+  position: absolute;
+  right: 0;
+}
+
+.logo {
+  transition: 1s;
+}
+.logo:hover {
+  transform: rotate(360deg);
+}
 ::-webkit-scrollbar {
   width: 10px !important;
 }

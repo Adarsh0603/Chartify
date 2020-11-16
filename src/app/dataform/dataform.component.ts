@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { GraphService } from './../graph.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dataform',
@@ -15,7 +16,7 @@ export class DataformComponent implements OnInit, OnDestroy {
   notifyUser: boolean = false;
   errorMessage: string;
 
-  constructor(private graphService: GraphService) {}
+  constructor(private graphService: GraphService, private router: Router) {}
 
   ngOnInit(): void {
     this.dataForm = new FormGroup({

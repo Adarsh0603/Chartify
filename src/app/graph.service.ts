@@ -1,3 +1,4 @@
+import { ConfigService } from './config.service';
 import { AbstractControl } from '@angular/forms';
 import { Graph } from './graph.model';
 import { Injectable } from '@angular/core';
@@ -7,10 +8,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class GraphService {
-  constructor() {}
+  constructor(private configService: ConfigService) {}
   generateGraph = new Subject<Graph>();
-  types: string[] = ['line', 'bar', 'doughnut', 'pie', 'polarArea'];
   drawGraphEvent = new Subject<string>();
+  types: string[] = ['line', 'bar', 'doughnut', 'pie', 'polarArea'];
+
   setGraph(graphType: string, title: string, dataFields: AbstractControl[]) {
     let data: number[] = [];
     let labels: string[] = [];
@@ -19,7 +21,9 @@ export class GraphService {
     dataFields.forEach((field) => {
       labels.push(field.value.label);
       data.push(field.value.value);
-      colors.push(this.hexToRgba(field.value.color, 20));
+      colors.push(
+        this.hexToRgba(field.value.color, this.configService.config.opacity)
+      );
       borders.push(this.hexToRgba(field.value.color, 100));
     });
     const graph: Graph = {
@@ -29,6 +33,7 @@ export class GraphService {
       data: data,
       colors: colors,
       borders: borders,
+      config: this.configService.config,
     };
     this.generateGraph.next(graph);
   }
@@ -44,15 +49,16 @@ export class GraphService {
       labels: ['Label 1', 'Label 2', 'Label 3'],
       data: [44, 54, 34],
       colors: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
+        `rgba(255, 99, 132, ${this.configService.config.opacity})`,
+        `rgba(54, 162, 235, ${this.configService.config.opacity})`,
+        `rgba(255, 206, 86, ${this.configService.config.opacity})`,
       ],
       borders: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235,1)',
         'rgba(255, 206, 86, 1)',
       ],
+      config: this.configService.config,
     };
   }
 

@@ -1,0 +1,37 @@
+<form (ngSubmit)="onConfigSave()" [formGroup]="configForm">
+  <label class="is-size-6 has-text-weight-bold" for="sliderWithValue"
+    >Opacity</label
+  >
+  <div style="width: 100%">
+    <input
+      id="opacitySlider"
+      class="slider has-output"
+      min="0"
+      max="100"
+      formControlName="opacity"
+      step="1"
+      type="range"
+    />
+    <output for="opacitySlider"
+      ><p>{{ configForm.get("opacity").value }}%</p></output
+    >
+  </div>
+  <label class="is-size-6 has-text-weight-bold" for="sliderWithValue"
+    >Border Width</label
+  >
+  <div style="width: 100%">
+    <input
+      id="borderSlider"
+      class="slider has-output"
+      min="0"
+      max="100"
+      formControlName="borderWidth"
+      step="1"
+      type="range"
+    />
+    <output for="borderSlider"
+      ><p>{{ configForm.get("borderWidth").value }}%</p></output
+    >
+  </div>
+  <button type="submit" class="button is-link">Save Preferences</button>
+</form>

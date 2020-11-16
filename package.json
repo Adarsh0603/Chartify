@@ -22,6 +22,7 @@
     "@fortawesome/angular-fontawesome": "^0.7.0",
     "@types/chart.js": "^2.9.27",
     "bulma": "^0.9.1",
+    "bulma-slider": "^2.0.4",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "font-awesome": "^4.7.0",

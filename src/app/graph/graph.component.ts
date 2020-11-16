@@ -51,7 +51,7 @@ export class GraphComponent implements OnInit, OnDestroy {
             data: graphData.data,
             backgroundColor: graphData.colors,
             borderColor: graphData.borders,
-            borderWidth: 0.5,
+            borderWidth: graphData.config.borderWidth / 100,
           },
         ],
       },
@@ -91,7 +91,9 @@ export class GraphComponent implements OnInit, OnDestroy {
     var link = document.getElementById('link');
     link.setAttribute(
       'download',
-      `${this.currentGraph.title}(${this.currentGraph.type}).png`
+      `${
+        this.currentGraph.title == null ? 'untitled' : this.currentGraph.title
+      }(${this.currentGraph.type}).png`
     );
     link.setAttribute('href', image);
     link.click();
