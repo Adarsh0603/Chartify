@@ -9,12 +9,17 @@ import { Subject } from 'rxjs';
 })
 export class GraphService {
   constructor(private configService: ConfigService) {}
-  generateGraph = new Subject<Graph>();
-  graphType;
+  generateGraph = new Subject<boolean>();
+  currentGraph: Graph;
   drawGraphEvent = new Subject<string>();
   types: string[] = ['line', 'bar', 'doughnut', 'pie', 'polarArea'];
 
+  setCurrentGraph(graph: Graph) {
+    this.currentGraph = graph;
+  }
+
   setGraph(graphType: string, title: string, dataFields: AbstractControl[]) {
+    console.log('Called SetGraph');
     let data: number[] = [];
     let labels: string[] = [];
     let colors: string[] = [];
@@ -22,10 +27,8 @@ export class GraphService {
     dataFields.forEach((field) => {
       labels.push(field.value.label);
       data.push(field.value.value);
-      colors.push(
-        this.hexToRgba(field.value.color, this.configService.config.opacity)
-      );
-      borders.push(this.hexToRgba(field.value.color, 100));
+      colors.push(this.hexToRgba(field.value.color, false));
+      borders.push(this.hexToRgba(field.value.color, true));
     });
     const graph: Graph = {
       title: title,
@@ -36,21 +39,22 @@ export class GraphService {
       borders: borders,
       config: this.configService.config,
     };
-    this.generateGraph.next(graph);
+    this.currentGraph = graph;
+    this.generateGraph.next(true);
   }
 
-  createGraphMap(graph: Graph) {
+  createGraphMap() {
     return {
-      type: graph.type,
+      type: this.currentGraph.type,
       data: {
-        labels: graph.labels,
+        labels: this.currentGraph.labels,
         datasets: [
           {
             label: '',
-            data: graph.data,
-            backgroundColor: graph.colors,
-            borderColor: graph.borders,
-            borderWidth: graph.config.borderWidth / 100,
+            data: this.currentGraph.data,
+            backgroundColor: this.currentGraph.colors,
+            borderColor: this.currentGraph.borders,
+            borderWidth: this.currentGraph.config.borderWidth / 100,
           },
         ],
       },
@@ -58,13 +62,15 @@ export class GraphService {
       options: {
         legend: {
           display:
-            graph.type == 'line' || graph.type == 'bar' || graph.type == 'radar'
+            this.currentGraph.type == 'line' ||
+            this.currentGraph.type == 'bar' ||
+            this.currentGraph.type == 'radar'
               ? false
               : true,
         },
         title: {
-          text: graph.title,
-          display: graph.title ? true : false,
+          text: this.currentGraph.title,
+          display: this.currentGraph.title ? true : false,
         },
         scales: {
           yAxes: [
@@ -79,36 +85,14 @@ export class GraphService {
     };
   }
 
-  generateDummy(): Graph {
-    let dummyType = this.types[
-      Math.floor(Math.random() * Math.floor(this.types.length))
-    ];
-    let opacity = this.configService.config.opacity / 100;
-    return {
-      title: 'Dummy Chart',
-      type: dummyType,
-      labels: ['Label 1', 'Label 2', 'Label 3'],
-      data: [44, 54, 34],
-      colors: [
-        `rgba(255, 99, 132, ${opacity})`,
-        `rgba(54, 162, 235, ${opacity})`,
-        `rgba(255, 206, 86, ${opacity})`,
-      ],
-      borders: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235,1)',
-        'rgba(255, 206, 86, 1)',
-      ],
-      config: this.configService.config,
-    };
-  }
-
-  hexToRgba(hex: string, opacity: number) {
+  hexToRgba(hex: string, border: boolean) {
     hex = hex.replace('#', '');
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
-    let rgba: string = `rgba(${r},${g},${b},${opacity / 100})`;
+    let rgba: string = `rgba(${r},${g},${b},${
+      border ? 1 : this.configService.config.opacity / 100
+    })`;
     return rgba;
   }
 }

@@ -30,6 +30,33 @@
 .logo:hover {
   transform: rotate(360deg);
 }
+.error {
+  z-index: 2;
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .reverse-columns {
+    flex-direction: column-reverse;
+    display: flex;
+  }
+  .appBodyData {
+    /* padding-top: 0rem; */
+    height: 100%;
+    background-color: #fff;
+    overflow-y: unset;
+  }
+  .appBodyGraph {
+    padding-top: 0.2rem;
+  }
+  .tabs {
+    display: block;
+  }
+}
+
+/* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
   width: 10px !important;
 }
@@ -46,21 +73,4 @@
 /* Handle on hover */
 .dataSide::-webkit-scrollbar-thumb:hover {
   background: #b8b8b8;
-}
-
-@media (max-width: 768px) {
-  .reverse-columns {
-    flex-direction: column-reverse;
-    display: flex;
-  }
-  .appBodyData {
-    padding-top: 0rem;
-    height: 100%;
-    background-color: #fff;
-
-    overflow-y: unset;
-  }
-  .tabs {
-    display: block;
-  }
 }

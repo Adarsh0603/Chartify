@@ -3,14 +3,8 @@ import { GraphService } from './../graph.service';
 import { Subscription } from 'rxjs';
 import { GraphConfig } from './../graphConfig.model';
 import { ConfigService } from './../config.service';
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-config',
@@ -38,6 +32,10 @@ export class ConfigComponent implements OnInit, OnDestroy {
 
   onConfigSave() {
     this.configService.saveConfig(this.configForm.value);
+    if (this.graphService.currentGraph)
+      this.graphService.drawGraphEvent.next(
+        this.graphService.currentGraph.type
+      );
     this.router.navigate(['/']);
   }
   ngOnDestroy() {

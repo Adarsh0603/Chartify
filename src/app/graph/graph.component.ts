@@ -1,4 +1,3 @@
-import { Graph } from './../graph.model';
 import { GraphService } from './../graph.service';
 import {
   Component,
@@ -19,47 +18,38 @@ import 'chartjs-plugin-datalabels';
 export class GraphComponent implements OnInit, OnDestroy {
   chart: Chart = null;
   chartSub: Subscription;
-  currentGraph: Graph;
   zoom: boolean = false;
+  placeholder: boolean = true;
 
   @ViewChild('graph') graph: ElementRef;
   constructor(private graphService: GraphService) {}
 
   ngOnInit(): void {
-    this.drawGraph(this.graphService.generateDummy());
-    this.chartSub = this.graphService.generateGraph.subscribe(
-      (graph: Graph) => {
-        this.drawGraph(graph);
-      }
-    );
+    this.chartSub = this.graphService.generateGraph.subscribe(() => {
+      this.placeholder = false;
+      this.drawGraph();
+    });
   }
   onRightClick(event: Event) {
     event.preventDefault();
   }
 
-  drawGraph(graphData: Graph) {
+  drawGraph() {
     if (this.chart) this.chart.destroy();
-    this.currentGraph = graphData;
-    this.chart = new Chart(
-      'myChart',
-      this.graphService.createGraphMap(graphData)
-    );
+    this.chart = new Chart('myChart', this.graphService.createGraphMap());
   }
   downloadImage() {
+    let currentGraph = this.graphService.currentGraph;
     var image = this.graph.nativeElement
       .toDataURL('image/png')
       .replace('image/png', 'image/octet-stream'); // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
-    console.log(this.chart.toBase64Image());
-
     var link = document.getElementById('link');
     link.setAttribute(
       'download',
-      `${
-        this.currentGraph.title.trim() == ''
-          ? 'untitled'
-          : this.currentGraph.title
-      }(${this.currentGraph.type}).png`
+      `${currentGraph.title.trim() == '' ? 'untitled' : currentGraph.title}(${
+        currentGraph.type
+      }).png`
     );
     link.setAttribute('href', image);
     link.click();

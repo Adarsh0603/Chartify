@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { CurrentFormData } from './dataform/formData.model';
 import { Injectable } from '@angular/core';
 
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class FormdataService {
   formData: CurrentFormData;
+  error = new Subject<string>();
   constructor() {}
 
   setFormData(formData: CurrentFormData) {

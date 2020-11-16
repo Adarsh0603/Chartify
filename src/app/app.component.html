@@ -1,3 +1,4 @@
+<!-- 8823054494 -->
 <nav
   class="navbar is-white has-shadow is-fixed-top"
   role="navigation"
@@ -27,9 +28,17 @@
     </div>
   </div>
 </nav>
-<section class="hero is-fullheight-with-navbar">
+<section class="hero is-fullheight-with-navbar" style="position: relative">
+  <div
+    *ngIf="notifyUser"
+    class="notification is-danger error"
+    style="margin-top: 20px"
+  >
+    <button class="delete" (click)="notifyUser = false"></button>
+    {{ errorMessage }}
+  </div>
   <div class="section">
-    <div class="columns reverse-columns">
+    <div class="columns">
       <div class="column dataSide appBodyData">
         <div class="icon config">
           <a

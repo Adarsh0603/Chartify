@@ -3,6 +3,16 @@
   height: 75vh;
   width: 70vw;
 }
+.placeholderContainer {
+  height: 75vh;
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.graphPlaceholder {
+  color: rgba(0, 0, 0, 0.2);
+}
 
 @media (max-width: 768px) {
   .graph {

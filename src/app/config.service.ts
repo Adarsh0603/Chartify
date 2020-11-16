@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { GraphConfig } from './graphConfig.model';
 import { Injectable } from '@angular/core';
 
@@ -24,6 +24,7 @@ export class ConfigService {
   }
   saveConfig(newGraphConfig: GraphConfig) {
     localStorage.setItem('graphConfig', JSON.stringify(newGraphConfig));
+
     this.graphConfig.next(newGraphConfig);
   }
 }

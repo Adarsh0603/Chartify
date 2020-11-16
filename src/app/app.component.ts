@@ -1,7 +1,9 @@
+import { Subscription } from 'rxjs';
+import { FormdataService } from './formdata.service';
 import { ConfigService } from './config.service';
 import { GraphComponent } from './graph/graph.component';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,13 +11,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   @ViewChild('graph') graph: GraphComponent;
-
-  constructor(private router: Router, private configService: ConfigService) {}
+  errorSub: Subscription;
+  errorMessage: string;
+  notifyUser: boolean;
+  constructor(
+    private router: Router,
+    private configService: ConfigService,
+    private formDataService: FormdataService
+  ) {}
   isConfig: boolean = false;
   ngOnInit(): void {
     this.configService.getSavedConfig();
-
-    this.router.events.subscribe((event) => {
+    this.errorSub = this.formDataService.error.subscribe((error) => {
+      this.errorMessage = error;
+      this.notifyUser = true;
+    });
+    this.router.events.subscribe(() => {
       this.isConfig = this.router.url == '/' ? false : true;
     });
   }

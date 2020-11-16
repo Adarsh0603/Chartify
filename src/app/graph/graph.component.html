@@ -1,6 +1,19 @@
-<div [ngClass]="zoom ? 'graphZoomed' : 'graph'" #graphContainer>
-  <canvas id="myChart" (contextmenu)="onRightClick($event)" #graph>
-    {{ chart }}</canvas
-  >
+<div
+  [ngClass]="{ graph: !placeholder, placeholderContainer: placeholder }"
+  #graphContainer
+>
+  <div [style.display]="placeholder ? 'none' : 'block'">
+    <canvas id="myChart" (contextmenu)="onRightClick($event)" #graph>
+      {{ chart }}</canvas
+    >
+  </div>
+  <div *ngIf="placeholder" class="graphPlaceholder">
+    <div style="text-align: center">
+      <h1 class="is-size-2-desktop has-text-weight-bold">
+        YOUR GRAPH WILL BE SHOWN HERE
+      </h1>
+      <p class="is-size-7-mobile">Start adding some data to generate graph.</p>
+    </div>
+  </div>
 </div>
 <a id="link" style="display: none"></a>

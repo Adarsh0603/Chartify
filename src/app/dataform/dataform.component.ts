@@ -29,16 +29,19 @@ export class DataformComponent implements OnInit, OnDestroy {
         currentFormData ? currentFormData.dataFields : []
       ),
     });
+
     this.graphSub = this.graphService.drawGraphEvent.subscribe(
       (selectedGraphType: string) => {
-        this.setGraphType(selectedGraphType);
+        this.validateData(selectedGraphType);
       }
     );
     if (currentFormData == null)
-      for (let i = 0; i < 4; i++) this.addDataField();
+      for (let i = 0; i < 2; i++) this.addDataField();
   }
 
-  setGraphType(type: string) {
+  //Triggered by tabs.Passes through here to graphservice after checking form validation.
+  validateData(type: string) {
+    console.log('Called Validate Data');
     if (!this.dataForm.valid || this.fields.length == 0) {
       this.showError();
       return;
@@ -72,16 +75,16 @@ export class DataformComponent implements OnInit, OnDestroy {
   deleteField(index: number) {
     (this.dataForm.get('dataFields') as FormArray).removeAt(index);
     if (this.fields.length > 0 && this.dataForm.valid && this.type)
-      this.setGraphType(this.type);
+      this.validateData(this.type);
   }
   ngOnDestroy() {
-    this.graphSub.unsubscribe();
+    // this.graphSub.unsubscribe();
   }
   showError() {
     this.errorMessage = 'Data fields cannot be empty!';
     if (this.fields.length == 0) {
       this.errorMessage = 'Please add some data.';
     }
-    this.notifyUser = true;
+    this.formDataService.error.next(this.errorMessage);
   }
 }
