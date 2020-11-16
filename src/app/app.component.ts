@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.configService.getSavedConfig();
     this.errorSub = this.formDataService.error.subscribe((error) => {
+      if (error == null) {
+        this.notifyUser = false;
+        return;
+      }
       this.errorMessage = error;
       this.notifyUser = true;
     });

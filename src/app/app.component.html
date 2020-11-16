@@ -29,11 +29,7 @@
   </div>
 </nav>
 <section class="hero is-fullheight-with-navbar" style="position: relative">
-  <div
-    *ngIf="notifyUser"
-    class="notification is-danger error"
-    style="margin-top: 20px"
-  >
+  <div *ngIf="notifyUser" class="notification is-danger error">
     <button class="delete" (click)="notifyUser = false"></button>
     {{ errorMessage }}
   </div>

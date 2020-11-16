@@ -41,12 +41,13 @@ export class DataformComponent implements OnInit, OnDestroy {
 
   //Triggered by tabs.Passes through here to graphservice after checking form validation.
   validateData(type: string) {
-    console.log('Called Validate Data');
     if (!this.dataForm.valid || this.fields.length == 0) {
       this.showError();
       return;
     }
     this.notifyUser = false;
+    this.formDataService.error.next(null);
+
     this.type = type;
     this.formDataService.setFormData({
       title: this.dataForm.get('title').value,

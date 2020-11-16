@@ -30,12 +30,15 @@
 .logo:hover {
   transform: rotate(360deg);
 }
-.error {
-  z-index: 2;
-  position: absolute;
-  top: 4rem;
-  left: 50%;
-  text-align: center;
+
+@media (min-width: 769px) {
+  .error {
+    z-index: 2;
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    margin-right: 0.75rem;
+  }
 }
 @media (max-width: 768px) {
   .reverse-columns {
@@ -43,10 +46,18 @@
     display: flex;
   }
   .appBodyData {
-    /* padding-top: 0rem; */
+    padding-top: 4rem;
     height: 100%;
     background-color: #fff;
     overflow-y: unset;
+  }
+  .error {
+    z-index: 5;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 10px;
   }
   .appBodyGraph {
     padding-top: 0.2rem;
