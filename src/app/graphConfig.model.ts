@@ -3,4 +3,6 @@ export interface GraphConfig {
   borderWidth: number;
   customColor: string;
   random: boolean;
+  dataColor: string;
+  dataHide: boolean;
 }

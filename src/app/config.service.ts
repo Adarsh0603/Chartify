@@ -8,9 +8,11 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
   graphConfig = new BehaviorSubject<GraphConfig>({
     opacity: 20,
-    borderWidth: 75,
+    borderWidth: 50,
     customColor: '#454545',
     random: false,
+    dataColor: '#000000',
+    dataHide: false,
   });
 
   get config() {

@@ -60,6 +60,12 @@ export class GraphService {
       },
 
       options: {
+        plugins: {
+          datalabels: {
+            color: this.currentGraph.config.dataColor,
+            display: !this.currentGraph.config.dataHide,
+          },
+        },
         legend: {
           display:
             this.currentGraph.type == 'line' ||
