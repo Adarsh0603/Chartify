@@ -28,11 +28,18 @@ export class ConfigComponent implements OnInit, OnDestroy {
       opacity: new FormControl(this.config.opacity),
       borderWidth: new FormControl(this.config.borderWidth),
       customColor: new FormControl(this.config.customColor),
+      random: new FormControl(this.config.random),
     });
   }
 
   onConfigSave() {
-    this.configService.saveConfig(this.configForm.value);
+    let configToSave: GraphConfig = {
+      opacity: this.configForm.value.opacity,
+      borderWidth: this.configForm.value.borderWidth,
+      customColor: this.configForm.value.customColor,
+      random: this.configForm.value.random,
+    };
+    this.configService.saveConfig(configToSave);
     if (this.graphService.currentGraph)
       this.graphService.drawGraphEvent.next(
         this.graphService.currentGraph.type

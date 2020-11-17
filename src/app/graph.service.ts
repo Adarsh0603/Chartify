@@ -19,6 +19,7 @@ export class GraphService {
   }
 
   setGraph(graphType: string, title: string, dataFields: AbstractControl[]) {
+    console.log('Called');
     let data: number[] = [];
     let labels: string[] = [];
     let colors: string[] = [];

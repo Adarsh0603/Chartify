@@ -24,6 +24,7 @@
     "angular-cli-ghpages": "^0.6.2",
     "bulma": "^0.9.1",
     "bulma-slider": "^2.0.4",
+    "bulma-switch": "^2.0.0",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "font-awesome": "^4.7.0",

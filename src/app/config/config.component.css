@@ -8,7 +8,6 @@
 #customFlex {
   display: flex;
   justify-content: space-between;
-  padding-right: 0.5rem;
   align-items: center;
 }
 .customDivider {

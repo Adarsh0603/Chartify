@@ -42,7 +42,12 @@
     <label class="is-size-6 has-text-weight-bold" for="colorButton"
       >Custom Color</label
     >
+    <label for="randomCheck">
+      <input type="checkbox" formControlName="random" />
+      Random
+    </label>
     <div
+      [ngClass]="{ 'is-hidden': configForm.get('random').value }"
       id="colorButton"
       class="button is-rounded is-small"
       [style.background]="configForm.get('customColor').value"

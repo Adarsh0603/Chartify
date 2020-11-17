@@ -56,7 +56,6 @@ export class DataformComponent implements OnInit, OnDestroy {
     }
     this.notifyUser = false;
     this.formDataService.error.next(null);
-
     this.type = type;
     this.formDataService.setFormData({
       title: this.dataForm.get('title').value,
@@ -76,7 +75,12 @@ export class DataformComponent implements OnInit, OnDestroy {
   addDataField() {
     const newDataField = new FormGroup({
       label: new FormControl(null, Validators.required),
-      color: new FormControl(this.graphConfig.customColor),
+      color: new FormControl(
+        !this.graphConfig.random
+          ? this.graphConfig.customColor
+          : '#' +
+            (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6)
+      ),
       value: new FormControl(null, Validators.required),
     });
     (this.dataForm.get('dataFields') as FormArray).push(newDataField);
