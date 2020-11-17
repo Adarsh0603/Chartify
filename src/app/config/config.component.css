@@ -1,7 +1,17 @@
-.customSliders {
+.inputDiv {
   width: 100%;
   margin-bottom: 20px;
 }
-.customSliders input {
+.inputDiv input {
   margin: 4px 0px;
+}
+#customFlex {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0.5rem;
+  align-items: center;
+}
+.customDivider {
+  margin: 5px;
+  color: gray;
 }

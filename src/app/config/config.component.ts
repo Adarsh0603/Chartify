@@ -27,6 +27,7 @@ export class ConfigComponent implements OnInit, OnDestroy {
     this.configForm = new FormGroup({
       opacity: new FormControl(this.config.opacity),
       borderWidth: new FormControl(this.config.borderWidth),
+      customColor: new FormControl(this.config.customColor),
     });
   }
 

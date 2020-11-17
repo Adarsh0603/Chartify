@@ -9,6 +9,7 @@ export class ConfigService {
   graphConfig = new BehaviorSubject<GraphConfig>({
     opacity: 20,
     borderWidth: 75,
+    customColor: '#454545',
   });
 
   get config() {

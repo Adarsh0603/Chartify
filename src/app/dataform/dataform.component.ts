@@ -1,3 +1,5 @@
+import { GraphConfig } from './../graphConfig.model';
+import { ConfigService } from './../config.service';
 import { FormdataService } from './../formdata.service';
 import { Subscription } from 'rxjs';
 import { GraphService } from './../graph.service';
@@ -15,10 +17,12 @@ export class DataformComponent implements OnInit, OnDestroy {
   graphSub: Subscription;
   notifyUser: boolean = false;
   errorMessage: string;
+  graphConfig: GraphConfig;
 
   constructor(
     private graphService: GraphService,
-    private formDataService: FormdataService
+    private formDataService: FormdataService,
+    private configService: ConfigService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +39,11 @@ export class DataformComponent implements OnInit, OnDestroy {
         this.validateData(selectedGraphType);
       }
     );
+
+    this.configService.graphConfig.subscribe(
+      (value) => (this.graphConfig = value)
+    );
+
     if (currentFormData == null)
       for (let i = 0; i < 2; i++) this.addDataField();
   }
@@ -67,7 +76,7 @@ export class DataformComponent implements OnInit, OnDestroy {
   addDataField() {
     const newDataField = new FormGroup({
       label: new FormControl(null, Validators.required),
-      color: new FormControl('#ff6384'),
+      color: new FormControl(this.graphConfig.customColor),
       value: new FormControl(null, Validators.required),
     });
     (this.dataForm.get('dataFields') as FormArray).push(newDataField);

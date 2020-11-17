@@ -1,12 +1,12 @@
 <p class="has-text-weight-semi-bold is-size-5 mb-3 has-text-grey">
   Preferences
 </p>
-<hr style="margin: 5px; color: gray" />
+<hr class="customDivider" />
 <form (ngSubmit)="onConfigSave()" [formGroup]="configForm">
   <label class="is-size-6 has-text-weight-bold" for="sliderWithValue"
     >Opacity</label
   >
-  <div class="customSliders">
+  <div class="inputDiv">
     <input
       id="opacitySlider"
       class="slider has-output"
@@ -23,7 +23,7 @@
   <label class="is-size-6 has-text-weight-bold" for="sliderWithValue"
     >Border Width</label
   >
-  <div class="customSliders">
+  <div class="inputDiv">
     <input
       id="borderSlider"
       class="slider has-output"
@@ -36,6 +36,35 @@
     <output for="borderSlider"
       ><p>{{ configForm.get("borderWidth").value }}</p></output
     >
+  </div>
+  <hr class="customDivider" />
+  <div id="customFlex" class="inputDiv mt-4">
+    <label class="is-size-6 has-text-weight-bold" for="colorButton"
+      >Custom Color</label
+    >
+    <div
+      id="colorButton"
+      class="button is-rounded is-small"
+      [style.background]="configForm.get('customColor').value"
+    >
+      <div>
+        <span
+          class="colorpickerbrush"
+          [style.color]="
+            configForm.get('customColor').value == '#ffffff'
+              ? '#000'
+              : '#ffffff'
+          "
+          ><i class="fa fa-paint-brush"></i
+        ></span>
+        <input
+          type="color"
+          class="colorpicker"
+          formControlName="customColor"
+          width="0px"
+        />
+      </div>
+    </div>
   </div>
   <div style="width: 100%; text-align: left">
     <button type="submit" class="button is-primary is-fullwidth">
