@@ -49,7 +49,7 @@
   .appBodyData {
     height: 100%;
     margin-bottom: 20px;
-    padding-top: 0.5rem;
+    padding-top: 4rem;
     background-color: #fff;
     overflow-y: unset;
     position: relative;
@@ -63,14 +63,14 @@
     margin: 10px;
   }
   .appBodyGraph {
-    padding-top: 4rem;
     padding-bottom: 0px;
+    padding-top: 0.5rem;
   }
   .config {
     position: absolute;
     right: 0;
     margin-right: 6px;
-    top: 1rem;
+    top: 4.5rem;
   }
   .tabs {
     display: block;

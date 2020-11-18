@@ -19,9 +19,6 @@
   .landscape {
     display: none;
   }
-  .is-desktop {
-    text-align: center;
-  }
 }
 
 @media (max-width: 768px) {
