@@ -45,7 +45,7 @@ export class DataformComponent implements OnInit, OnDestroy {
     );
 
     if (currentFormData == null)
-      for (let i = 0; i < 2; i++) this.addDataField();
+      for (let i = 0; i < 4; i++) this.addDataField();
   }
 
   //Triggered by tabs.Passes through here to graphservice after checking form validation.

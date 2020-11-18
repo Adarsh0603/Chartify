@@ -1,7 +1,7 @@
 <div class="dataform">
   <form [formGroup]="dataForm">
     <div class="field">
-      <label class="label">Title</label>
+      <label class="label is-size-7-mobile">Title</label>
       <div class="control">
         <input
           class="input"
@@ -15,11 +15,17 @@
       class="columns is-vcentered"
       style="flex-direction: row; display: flex; margin-bottom: 0px"
     >
-      <label for="fieldsList" class="column label" style="margin-bottom: 0px"
+      <label
+        for="fieldsList"
+        class="column label is-size-7-mobile"
+        style="margin-bottom: 0px"
         >Data</label
       >
       <div class="column is-narrow" style="text-align: end">
-        <button class="button is-primary" (click)="addDataField()">
+        <button
+          class="button is-primary is-size-7-mobile"
+          (click)="addDataField()"
+        >
           Add Field
         </button>
       </div>

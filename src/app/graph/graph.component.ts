@@ -18,7 +18,6 @@ import 'chartjs-plugin-datalabels';
 export class GraphComponent implements OnInit, OnDestroy {
   chart: Chart = null;
   chartSub: Subscription;
-  zoom: boolean = false;
   placeholder: boolean = true;
 
   @ViewChild('graph') graph: ElementRef;
@@ -55,10 +54,6 @@ export class GraphComponent implements OnInit, OnDestroy {
     link.click();
   }
 
-  onZoom() {
-    console.log('Zoomed');
-    this.zoom = !this.zoom;
-  }
   ngOnDestroy() {
     this.chartSub.unsubscribe();
   }

@@ -1,5 +1,8 @@
 <div
-  [ngClass]="{ graph: !placeholder, placeholderContainer: placeholder }"
+  [ngClass]="{
+    graph: !placeholder,
+    placeholderContainer: placeholder
+  }"
   #graphContainer
 >
   <div [style.display]="placeholder ? 'none' : 'block'">
@@ -7,12 +10,19 @@
       {{ chart }}</canvas
     >
   </div>
+
   <div *ngIf="placeholder" class="graphPlaceholder">
-    <div style="text-align: center">
+    <div style="text-align: left">
       <h1 class="is-size-2-desktop is-size-7-mobile has-text-weight-bold">
         YOUR CHART WILL BE SHOWN HERE
       </h1>
-      <p class="is-size-7-mobile">Start adding some data to generate chart.</p>
+      <p class="is-size-7-mobile is-desktop">
+        Start adding some data to generate chart.
+      </p>
+
+      <p class="landscape is-size-7">
+        View and download chart in landscape mode for more clearity.
+      </p>
     </div>
   </div>
 </div>

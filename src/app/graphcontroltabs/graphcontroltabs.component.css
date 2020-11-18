@@ -1,5 +1,6 @@
 @media (max-width: 768px) {
   .tabs a {
     padding: 0.3em 0.8em;
+    font-size: 12px;
   }
 }

@@ -15,14 +15,29 @@
   color: rgba(0, 0, 0, 0.2);
 }
 
+@media (min-width: 769px) {
+  .landscape {
+    display: none;
+  }
+  .is-desktop {
+    text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   .graph {
     height: 100%;
     width: 100%;
   }
+  .zoomedGraph {
+    position: relative;
+    height: 100%;
+    width: 200%;
+  }
+
   .graphPlaceholder {
     padding-top: 2rem;
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
   }
   .placeholderContainer {
     height: 100%;

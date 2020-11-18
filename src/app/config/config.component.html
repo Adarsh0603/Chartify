@@ -4,7 +4,9 @@
 <hr class="customDivider" />
 <form (ngSubmit)="onConfigSave()" [formGroup]="configForm">
   <!-- Opacity -->
-  <label class="is-size-6 has-text-weight-bold" for="sliderWithValue"
+  <label
+    class="is-size-6 has-text-weight-bold is-size-7-mobile"
+    for="sliderWithValue"
     >Opacity</label
   >
   <div class="inputDiv">
@@ -23,7 +25,9 @@
   </div>
 
   <!-- Border Width -->
-  <label class="is-size-6 has-text-weight-bold" for="sliderWithValue"
+  <label
+    class="is-size-6 is-size-7-mobile has-text-weight-bold"
+    for="sliderWithValue"
     >Border Width</label
   >
   <div class="inputDiv">
@@ -45,8 +49,10 @@
   <!-- Custom Color -->
   <div id="customFlex" class="inputDiv mt-4">
     <div>
-      <label class="is-size-6 has-text-weight-bold" for="colorButton"
-        >Custom Color</label
+      <label
+        class="is-size-6 is-size-7-mobile has-text-weight-bold"
+        for="colorButton"
+        >Color</label
       >
     </div>
 
@@ -78,7 +84,7 @@
     </div>
 
     <div>
-      <label for="randomCheck" class="checkbox">
+      <label for="randomCheck" class="checkbox is-size-7-mobile">
         Random
         <input type="checkbox" formControlName="random" style="color: gray" />
       </label>
@@ -88,8 +94,10 @@
   <!-- DataColor -->
   <div id="customFlex" class="inputDiv mt-4">
     <div>
-      <label class="is-size-6 has-text-weight-bold" for="colorButton"
-        >Data Labels</label
+      <label
+        class="is-size-6 has-text-weight-bold is-size-7-mobile"
+        for="colorButton"
+        >Data Overlay</label
       >
     </div>
     <div>
@@ -119,9 +127,8 @@
       </div>
     </div>
     <div>
-      <label for="dataHide" class="checkbox">
+      <label for="dataHide" class="checkbox is-size-7-mobile">
         Hide
-
         <input type="checkbox" formControlName="dataHide" />
       </label>
     </div>
