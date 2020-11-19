@@ -47,15 +47,24 @@
       <div class="column appBodyData is-one-quarter">
         <div class="config">
           <a
+            class="button is-small is-white"
             style="color: gray"
             [routerLink]="!isConfig ? ['/config'] : ['/']"
             (click)="onAction()"
           >
-            <i
-              [ngClass]="
-                isConfig ? 'fa fa-times-circle fa-lg' : 'fa fa-gear fa-lg'
-              "
-            ></i>
+            <span>
+              <i
+                [ngClass]="
+                  isConfig ? 'fa fa-times-circle fa-lg' : 'fa fa-gear fa-lg'
+                "
+              ></i
+            ></span>
+            <p
+              *ngIf="!isConfig"
+              class="is-size-7 has-text-grey has-text-weight-bold ml-1"
+            >
+              Customize
+            </p>
           </a>
         </div>
         <br />

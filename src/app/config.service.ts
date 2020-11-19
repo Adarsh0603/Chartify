@@ -10,7 +10,7 @@ export class ConfigService {
     opacity: 20,
     borderWidth: 50,
     customColor: '#454545',
-    random: false,
+    random: true,
     dataColor: '#000000',
     dataHide: false,
   });
