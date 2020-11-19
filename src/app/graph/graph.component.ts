@@ -19,6 +19,7 @@ export class GraphComponent implements OnInit, OnDestroy {
   chart: Chart = null;
   chartSub: Subscription;
   placeholder: boolean = true;
+  zoom: boolean = false;
 
   @ViewChild('graph') graph: ElementRef;
   constructor(private graphService: GraphService) {}
@@ -36,6 +37,10 @@ export class GraphComponent implements OnInit, OnDestroy {
   drawGraph() {
     if (this.chart) this.chart.destroy();
     this.chart = new Chart('myChart', this.graphService.createGraphMap());
+  }
+
+  onZoom() {
+    this.zoom = !this.zoom;
   }
   downloadImage() {
     let currentGraph = this.graphService.currentGraph;

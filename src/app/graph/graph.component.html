@@ -1,7 +1,9 @@
 <div
+  (click)="onZoom()"
   [ngClass]="{
     graph: !placeholder,
-    placeholderContainer: placeholder
+    placeholderContainer: placeholder,
+    zoomedGraph: zoom
   }"
   #graphContainer
 >
@@ -16,10 +18,15 @@
       <h1 class="is-size-2-desktop is-size-7-mobile has-text-weight-bold">
         YOUR CHART WILL BE SHOWN HERE
       </h1>
-      <p class="is-size-7-mobile">Start adding some data to generate chart.</p>
+      <p class="is-size-7-mobile" style="text-align: left">
+        Start adding some data to generate chart.
+      </p>
 
-      <p class="landscape is-size-7">
+      <p class="landscape is-size-7" style="text-align: left">
         View and download chart in landscape mode for more clearity.
+      </p>
+      <p class="landscape is-size-7" style="text-align: left">
+        Triple-click chart to zoom in or out.
       </p>
     </div>
   </div>

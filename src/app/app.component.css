@@ -4,13 +4,13 @@
 
 .appBodyGraph {
   padding-top: 5rem;
-  position: relative;
+  background-color: #fff;
 }
 
 .appBodyData {
   padding-top: 5rem;
   height: 100vh;
-  background-color: #f1f1f181;
+  background-color: #f1f1f1;
   overflow-y: scroll;
   position: relative;
 }

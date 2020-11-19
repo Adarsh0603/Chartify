@@ -6,8 +6,13 @@
   <div class="navbar-brand">
     <div class="navbar-item is-expanded">
       <img src="assets/charticon.png" alt="" class="logo" />
-      <h1 class="is-size-5-desktop has-text-weight-bold px-2">Chartify</h1>
+      <h1 class="is-size-5-desktop has-text-weight-bold mx-2">Chartify</h1>
     </div>
+    <p class="navbar-item hide-on-desktop">
+      <a href="https://github.com/Adarsh0603/Chartify" target="_blank">
+        <i style="color: black" class="fa fa-github fa-lg"></i
+      ></a>
+    </p>
     <p class="navbar-item hide-on-desktop">
       <button class="button is-success is-small" (click)="downloadGraph()">
         <i class="fa fa-download"></i>
@@ -16,6 +21,11 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-end">
+      <p class="navbar-item">
+        <a href="https://github.com/Adarsh0603/Chartify" target="_blank">
+          <i style="color: black" class="fa fa-github fa-2x"></i
+        ></a>
+      </p>
       <p class="navbar-item">
         <button class="button is-success" (click)="downloadGraph()">
           <span class="icon pr-5 pl-3 pt-1">
@@ -34,7 +44,7 @@
   </div>
   <div class="section">
     <div class="columns">
-      <div class="column appBodyData">
+      <div class="column appBodyData is-one-quarter">
         <div class="config">
           <a
             style="color: gray"
@@ -51,7 +61,7 @@
         <br />
         <router-outlet></router-outlet>
       </div>
-      <div class="column is-two-thrid appBodyGraph">
+      <div class="column is-three-quarters appBodyGraph">
         <app-graph #graph></app-graph>
         <div class="tabs">
           <app-graphcontroltabs></app-graphcontroltabs>
